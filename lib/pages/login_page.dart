@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     final String password = _passwordCtrl.text.trim();
 
     if (username.isEmpty || password.isEmpty) {
-      _showErrorSnackBar('Username dan Password tidak boleh kosong.'); // ← EDIT: teks boleh diganti
+      _showErrorSnackBar('Username dan Password tidak boleh kosong.'); 
       return;
     }
 
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (_) => HomePage(username: username), // ← EDIT: ganti nama class & parameter
+          builder: (_) => HomePage(username: username), 
         ),
       );
     }
