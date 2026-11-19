@@ -197,7 +197,60 @@ class _DetailPageState extends State<DetailPage> {
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
-                  
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text(article.extra('rating'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text('Jumlah Review: '),
+                    Text(article.extra('reviewCount'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                    const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                     Text('Waktu Persiapan: '),
+                    Text(article.extra('prepTimeMinutes'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                      const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text('Kesulitan: '),
+                    Text(article.extra('difficulty'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                      const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text('Waktu masak: '),
+                    Text(article.extra('cookTimeMinutes'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                       const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text('Jumlah Porsi: '),
+                    Text(article.extra('servings'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                       const SizedBox(height: 4),
+                  Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text('Kalori: '),
+                    Text(article.extra('caloriesPerServing'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
                   // ─────────────────────────────────────────────
                   const SizedBox(height: 8),
                   // ─────────────────────────────────────────────
