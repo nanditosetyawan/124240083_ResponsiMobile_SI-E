@@ -186,21 +186,21 @@ class _DetailPageState extends State<DetailPage> {
                   Row(children: [
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.newsSite,                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.newsSite,               
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
                    Row(children: [
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.extra('mealType'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('mealType'),                
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
                   Row(children: [
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
-                    Text(article.extra('rating'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('rating'),               
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
@@ -208,7 +208,7 @@ class _DetailPageState extends State<DetailPage> {
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                     Text('Jumlah Review: '),
-                    Text(article.extra('reviewCount'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('reviewCount'),               
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                     const SizedBox(height: 4),
@@ -216,7 +216,7 @@ class _DetailPageState extends State<DetailPage> {
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                      Text('Waktu Persiapan: '),
-                    Text(article.extra('prepTimeMinutes'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('prepTimeMinutes'),              
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                       const SizedBox(height: 4),
@@ -224,7 +224,7 @@ class _DetailPageState extends State<DetailPage> {
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                     Text('Kesulitan: '),
-                    Text(article.extra('difficulty'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('difficulty'),                
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                       const SizedBox(height: 4),
@@ -232,7 +232,7 @@ class _DetailPageState extends State<DetailPage> {
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                     Text('Waktu masak: '),
-                    Text(article.extra('cookTimeMinutes'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('cookTimeMinutes'),               
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                        const SizedBox(height: 4),
@@ -240,7 +240,7 @@ class _DetailPageState extends State<DetailPage> {
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
                     Text('Jumlah Porsi: '),
-                    Text(article.extra('servings'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                    Text(article.extra('servings'),               
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                        const SizedBox(height: 4),
