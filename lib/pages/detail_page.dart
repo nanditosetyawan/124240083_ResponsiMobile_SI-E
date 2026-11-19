@@ -97,7 +97,7 @@ class _DetailPageState extends State<DetailPage> {
               ? '${_article.title} ditambahkan ke favorit!'
               : '${_article.title} dihapus dari favorit.',
         ),
-        backgroundColor: nowFavorite ? const Color(0xFF5C6BC0) : Colors.grey,
+        backgroundColor: nowFavorite ? const Color.fromARGB(255, 100, 206, 144) : Colors.grey,
         duration: const Duration(seconds: 2),
       ),
     );
@@ -144,7 +144,7 @@ class _DetailPageState extends State<DetailPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detail'),
-        backgroundColor: const Color(0xFF5C6BC0), // ← EDIT: warna
+        backgroundColor: const Color.fromARGB(255, 115, 207, 140), // ← EDIT: warna
         foregroundColor: Colors.white,
         actions: [
           // ════════════════════════════════════════════════════
@@ -228,6 +228,7 @@ class _DetailPageState extends State<DetailPage> {
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
+                  
                   // ─────────────────────────────────────────────
 
                   // ── FITUR: TANGGAL PUBLISH ────────────────────
@@ -265,7 +266,7 @@ class _DetailPageState extends State<DetailPage> {
                   // EDIT: ganti 'article.summary' dengan field ringkasan model kamu
                   Text(
                     article.summary.isNotEmpty           // ← EDIT: .summary
-                        ? article.summary                // ← EDIT: .summary
+                        ? article.extra('instructions')                // ← EDIT: .summary
                         : 'Tidak ada ringkasan tersedia.',
                     style: const TextStyle(fontSize: 14, height: 1.6),
                   ),
