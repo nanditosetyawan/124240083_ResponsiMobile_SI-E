@@ -1,0 +1,29 @@
+name: latres
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.10.8
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # HTTP client untuk memanggil REST API Spaceflight News
+  flutter_local_notifications: ^22.3.3
+  http: ^1.2.2
+
+  # SharedPreferences untuk menyimpan data login & favorites secara lokal (persist)
+  shared_preferences: ^2.3.2
+
+  # URL Launcher untuk membuka link berita di browser
+  url_launcher: ^6.3.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
