@@ -1,18 +1,3 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: HALAMAN DETAIL ARTIKEL                               ║
-// ║  FILE : pages/detail_page.dart                               ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : (ditandai ← EDIT di bawah)                          ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ Wajib menampilkan gambar
-//   ✅ Wajib menampilkan judul data
-//   ✅ Wajib menampilkan author data
-//   ✅ Wajib menampilkan tanggal publish
-//   ✅ Wajib menampilkan summary data
-//   ✅ Tombol launch URL ke situs resmi
-//   ✅ Tombol tambah/hapus Favourite (dari halaman ini)
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart'; // ← WAJIB: untuk launch URL ke browser
@@ -23,8 +8,7 @@ import '../services/favorite_service.dart';       // ← EDIT: import FavoriteSe
 import '../services/notification_service.dart';
 
 class DetailPage extends StatefulWidget {
-  // 'article' dikirim dari ListPage saat item diklik
-  // ← EDIT: ganti 'ArticleModel' dengan nama model kamu
+  
   final ArticleModel article;
   const DetailPage({super.key, required this.article});
 
@@ -35,8 +19,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   late ArticleModel _article = widget.article;
 
-  // ── VARIABEL STATE FAVOURITE ─────────────────────────────────
-  // COPY: kedua variabel ini — UNIVERSAL
+ 
   bool _isFavorite = false;   // true = sudah favorite, false = belum
   bool _isCheckingFav = true; // true = sedang proses cek/ubah (tampilkan loading)
   // ─────────────────────────────────────────────────────────────
@@ -62,24 +45,15 @@ class _DetailPageState extends State<DetailPage> {
     }
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: CEK STATUS FAVOURITE SAAT HALAMAN DIBUKA
-  // COPY: method ini — UNIVERSAL
-  // EDIT: ganti 'widget.article.id' dengan field id di model kamu
-  // ══════════════════════════════════════════════════════════════
+
+  //CEK STATUS FAVOURITE SAAT HALAMAN DIBUKA
+
   Future<void> _checkFavoriteStatus() async {
     final bool isFav = await FavoriteService.isFavorite(widget.article.id); // ← EDIT: .id
     setState(() { _isFavorite = isFav; _isCheckingFav = false; });
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: TOGGLE FAVOURITE (tambah / hapus)
-  // COPY: method ini — UNIVERSAL
-  // EDIT: ganti 'widget.article' dengan nama variabel artikelmu
-  //       ganti teks SnackBar sesuai kebutuhan
-  //
-  // Ketentuan: "Penambahan data favourite dilakukan dari halaman detil"
-  // ══════════════════════════════════════════════════════════════
+ 
   Future<void> _toggleFavorite() async {
     setState(() => _isCheckingFav = true);
     final bool nowFavorite = await FavoriteService.toggleFavorite(_article);
@@ -104,14 +78,7 @@ class _DetailPageState extends State<DetailPage> {
   }
   // ══════════════════════════════════════════════════════════════
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: LAUNCH URL KE BROWSER
-  // COPY: method ini — UNIVERSAL
-  // EDIT: ganti 'widget.article.url' dengan field URL di model kamu
-  //
-  // Ketentuan: "Terdapat tombol yang akan mengarahkan (launch url) ke situs resmi"
-  // DEPENDENCY: url_launcher di pubspec.yaml wajib ada
-  // ══════════════════════════════════════════════════════════════
+  
   Future<void> _launchUrl() async {
     final Uri uri = Uri.parse(_article.url);
     if (await canLaunchUrl(uri)) {
@@ -125,8 +92,7 @@ class _DetailPageState extends State<DetailPage> {
   }
   // ══════════════════════════════════════════════════════════════
 
-  // ── Helper: format tanggal ISO 8601 → "YYYY-MM-DD HH:mm" ────
-  // COPY: method ini + _pad — UNIVERSAL, tidak perlu edit
+ 
   String _formatDate(String isoDate) {
     if (isoDate.isEmpty) return 'Tanggal tidak tersedia';
     try {
@@ -147,11 +113,12 @@ class _DetailPageState extends State<DetailPage> {
         backgroundColor: const Color.fromARGB(255, 115, 207, 140), // ← EDIT: warna
         foregroundColor: Colors.white,
         actions: [
-          // ════════════════════════════════════════════════════
+
+
+
+
           // FITUR: IKON FAVOURITE DI APPBAR (merah = sudah fav, putih = belum)
-          // COPY: actions ini — UNIVERSAL
-          // EDIT: tidak perlu edit
-          // ════════════════════════════════════════════════════
+       
           _isCheckingFav
               ? const Padding(
                   padding: EdgeInsets.all(14.0),
@@ -165,7 +132,7 @@ class _DetailPageState extends State<DetailPage> {
                   ),
                   onPressed: _toggleFavorite,
                 ),
-          // ════════════════════════════════════════════════════
+          
         ],
       ),
       body: SingleChildScrollView(
@@ -173,11 +140,9 @@ class _DetailPageState extends State<DetailPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            // ════════════════════════════════════════════════════
-            // FITUR: GAMBAR UTAMA DETAIL
-            // COPY: bagian ini — UNIVERSAL
-            // EDIT: ganti 'article.imageUrl' dengan field gambar di model kamu
-            // ════════════════════════════════════════════════════
+  
+            //  GAMBAR UTAMA DETAIL
+     
             article.imageUrl.isNotEmpty                   // ← EDIT: .imageUrl
                 ? Image.network(
                     article.imageUrl,                     // ← EDIT: .imageUrl
@@ -208,8 +173,8 @@ class _DetailPageState extends State<DetailPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  // ── FITUR: JUDUL ──────────────────────────────
-                  // EDIT: ganti 'article.title' dengan field judul model kamu
+                  //JUDUL
+              
                   Text(
                     article.title,                        // ← EDIT: .title
                     style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -217,10 +182,7 @@ class _DetailPageState extends State<DetailPage> {
                   const SizedBox(height: 8),
                   // ─────────────────────────────────────────────
 
-                  // ── FITUR: AUTHOR / SUMBER ────────────────────
-                  // Data ini otomatis sesuai item yang kamu klik di list!
-                  // Default: article.newsSite
-                  // Kalau mau panggil key lain: ganti 'article.newsSite' jadi 'article.extra('nama_key')'
+                  // negara
                   Row(children: [
                     const Icon(Icons.source, size: 16, color: Colors.grey),
                     const SizedBox(width: 4),
@@ -230,40 +192,24 @@ class _DetailPageState extends State<DetailPage> {
                   const SizedBox(height: 4),
                   
                   // ─────────────────────────────────────────────
-
-                  // ── FITUR: TANGGAL PUBLISH ────────────────────
-                  // EDIT: ganti 'article.publishedAt' dengan field tanggal model kamu
-                  Row(children: [
-                    const Icon(Icons.calendar_today, size: 16, color: Colors.grey),
-                    const SizedBox(width: 4),
-                    Text(_formatDate(article.publishedAt), // ← EDIT: .publishedAt
-                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
-                  ]),
-                  const SizedBox(height: 8),
-
-                  // ── DATA TAMBAHAN DARI API (OPSIONAL) ─────────
-                  // CARA PAKAI: Sama persis seperti di list_page!
-                  //
-                  // Bentuk 1 (langsung panggil datanya, persis list):
-                  // Text(article.extra('author')),
-                  //
-                  // Bentuk 2 (jika mau pakai label di depannya, cukup pakai tanda +):
-                  // Text('Penulis: ' + article.extra('author')),
-                  // Text('Kategori: ' + article.extra('category')),
-                  // Text('Harga: ' + article.extra('price')),
-                  //
-                  // Buka tanda // di bawah ini jika ingin menampilkan data tambahan:
-                  // Text('Penulis: ' + article.extra('author')),
-                  // Text('Kategori: ' + article.extra('category')),
-                  // Text('Platform: ' + article.extra('platform')),
                   const SizedBox(height: 8),
                   // ─────────────────────────────────────────────
 
                   const Divider(),
                   const SizedBox(height: 8),
 
-                  // ── FITUR: SUMMARY ────────────────────────────
-                  // EDIT: ganti 'article.summary' dengan field ringkasan model kamu
+                  // data ingrediend  dan menu
+
+                  Text(
+                    article.summary.isNotEmpty           // ← EDIT: .summary
+                        ? article.extra('ingredients')                // ← EDIT: .summary
+                        : 'Tidak ada ringkasan tersedia.',
+                    style: const TextStyle(fontSize: 14, height: 1.6),
+                  ),
+                  const SizedBox(height: 24),
+                  const Divider(),
+                  const SizedBox(height: 8),
+
                   Text(
                     article.summary.isNotEmpty           // ← EDIT: .summary
                         ? article.extra('instructions')                // ← EDIT: .summary
@@ -271,36 +217,8 @@ class _DetailPageState extends State<DetailPage> {
                     style: const TextStyle(fontSize: 14, height: 1.6),
                   ),
                   const SizedBox(height: 24),
-                  // ─────────────────────────────────────────────
 
-                  // ════════════════════════════════════════════
-                  // FITUR: TOMBOL LAUNCH URL KE SITUS RESMI
-                  // COPY: SizedBox + ElevatedButton.icon ini — UNIVERSAL
-                  // EDIT: tidak perlu edit, sudah memanggil _launchUrl()
-                  // Ketentuan: "Terdapat tombol yang akan mengarahkan ke situs resmi"
-                  // ════════════════════════════════════════════
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: article.url.isNotEmpty ? _launchUrl : null, // ← EDIT: .url
-                      icon: const Icon(Icons.open_in_browser),
-                      label: const Text('Buka Situs Resmi'), // ← EDIT: teks tombol
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFF5C6BC0), // ← EDIT: warna
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 12),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  // ════════════════════════════════════════════
-
-                  // ════════════════════════════════════════════
-                  // FITUR: TOMBOL TAMBAH/HAPUS FAVOURITE
-                  // COPY: SizedBox + OutlinedButton.icon ini — UNIVERSAL
-                  // EDIT: tidak perlu edit, sudah memanggil _toggleFavorite()
-                  // Ketentuan: "Terdapat tombol untuk menambahkan data sebagai favourite"
-                  // ════════════════════════════════════════════
+                  //TOMBOL TAMBAH/HAPUS FAVOURITE
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton.icon(

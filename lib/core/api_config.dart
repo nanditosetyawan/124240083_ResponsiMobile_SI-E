@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'api_adapter.dart';
 import 'api_gate.dart';
 
-/// Definisi konfigurasi satu endpoint API (opsional — hanya jika butuh method POST/header/mapping khusus).
+
 class EndpointConfig {
   final String path;
   final HttpMethod method;
@@ -10,13 +10,13 @@ class EndpointConfig {
   final Map<String, dynamic> queryParameters;
   final Object? body;
 
-  /// Lokasi List di JSON (`''` = deteksi otomatis, termasuk root Array & list dalam list).
+
   final String listPath;
 
-  /// Lokasi Object detail di JSON (`''` = deteksi otomatis).
+
   final String detailPath;
 
-  /// Mapping manual (`{}` = deteksi otomatis semua field tanpa perlu remap).
+
   final Map<String, FieldMapping> fieldMapping;
 
   const EndpointConfig({
@@ -31,66 +31,41 @@ class EndpointConfig {
   });
 }
 
-/// Konfigurasi terpusat seluruh API aplikasi.
-///
-/// MODE OTOMATIS (ZERO-REMAP):
-/// Saat dapat 3 API baru, cukup paste 3 URL di [urls] di bawah ini.
-/// Sistem otomatis mendeteksi lokasi List, list dalam list, gambar dalam list,
-/// nested object, dan mengonversi tipe data tanpa perlu edit file lain.
+
 class ApiConfig {
-  // ╔══════════════════════════════════════════════════════════════════════╗
-  // ║  1. URL DAFTAR / LIST (yang tampil di ListPage)                      ║
-  // ║     Kalau besok dapat 2 atau 3 API, cukup buka komentar (//) di bawah║
-  // ╚══════════════════════════════════════════════════════════════════════╝
+
   static const Map<String, String> urls = {
     'news': 'https://dummyjson.com/recipes',
-    // 'blogs':   'https://url-list-api-2.com/...',
-    // 'reports': 'https://url-list-api-3.com/...',
+
   };
 
-  // ╔══════════════════════════════════════════════════════════════════════╗
-  // ║  2. URL DETAIL PER ITEM (mendukung {id}, {game_id}, {{id}}, :id,     ║
-  // ║     <id>, [id], $id, ${id}, atau ?id= kosong)                        ║
-  // ║     Otomatis dipanggil di DetailPage saat item diklik!               ║
-  // ║     Kalau API tidak punya endpoint detail terpisah, biarkan dikomen  ║
-  // ╚══════════════════════════════════════════════════════════════════════╝
+ 
   static const Map<String, String> detailUrls = {
     'news': 'https://dummyjson.com/recipes/{id}',
-    // 'blogs':   'https://url-detail-api-2.com/{id}',
-    // 'reports': 'https://url-detail-api-3.com/{id}',
+
   };
 
-  // ── OPSIONAL (Biarkan default jika tidak dibutuhkan) ────────────────────
-
-  /// Isi token jika API butuh `Authorization: Bearer <token>`.
   static const String? authToken = null;
 
-  /// Header global tambahan jika diperlukan API baru.
+
   static const Map<String, String> defaultHeaders = {
     'Accept': 'application/json',
   };
 
-  /// Override lokasi List hanya jika auto-detect salah memilih list.
+ 
   static const Map<String, String> customListPaths = {};
 
-  /// Override mapping hanya untuk 1-2 field tertentu jika hasil otomatis kurang pas
-  /// (misalnya ingin mengganti patokan FilterChip di ListPage).
-  /// Field lain yang tidak ditulis di sini TETAP dideteksi otomatis!
-  ///
-  /// Cara pakai: buka komentar (//) lalu ganti key JSON di dalam FieldMapping('...'):
-  /// - `'news'` / `'blogs'` / `'reports'` → nama menu di `urls`
-  /// - `'newsSite'`                       → patokan FilterChip & teks abu-abu di bawah judul (JANGAN ganti tulisan 'newsSite')
-  /// - `'genre'` / `'network.name'` / `'genres[0]'` → nama key JSON dari API (cek daftarnya di Debug Console)
+ 
   static const Map<String, Map<String, FieldMapping>> customFieldMappings = {
     // 'news': {'newsSite': FieldMapping('genre', type: FieldType.string)},
     // 'blogs': {'newsSite': FieldMapping('strCategory', type: FieldType.string)},
     // 'reports': {'newsSite': FieldMapping('network.name', type: FieldType.string)},
   };
 
-  /// Override penuh per endpoint jika butuh HTTP POST / body / header khusus per API.
+ 
   static const Map<String, EndpointConfig> customEndpoints = {};
 
-  // ── PENGATURAN SISTEM (Tidak perlu diubah) ──────────────────────────────
+
   static const String baseUrl = 'https://api.spaceflightnewsapi.net/v4';
   static const Duration timeout = Duration(seconds: 15);
   static const bool enableDebugLog = kDebugMode;
@@ -113,7 +88,7 @@ class ApiConfig {
     r'\{\{[^}]+\}\}|\$\{[^}]+\}|\{[^}]+\}|<[^>]+>|\[[^\]]+\]|(?<=[/=]):[a-zA-Z_][a-zA-Z0-9_]*|\$[a-zA-Z_][a-zA-Z0-9_]*',
   );
 
-  /// Ganti berbagai gaya placeholder ID (`{game_id}`, `{{id}}`, `:id`, `<id>`, `[id]`, `$id`, `?id=`).
+ 
   static String resolveDetailUrl(String templateUrl, int id) {
     final trimmed = templateUrl.trim();
     final idStr = id.toString();

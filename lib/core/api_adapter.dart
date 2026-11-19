@@ -152,7 +152,7 @@ class DateRule {
   }
 }
 
-/// Aturan mapping satu field: dari path JSON API baru → field standar Model lama.
+
 class FieldMapping {
   final String source;
   final FieldType type;
@@ -170,7 +170,7 @@ class FieldMapping {
     this.dateRule,
   });
 
-  /// Helper untuk membuat aturan dari map sederhana `{"nama": "student_name"}`.
+
   static Map<String, FieldMapping> fromSimple(
     Map<String, String> mapping, {
     Map<String, FieldType> types = const {},
@@ -191,7 +191,7 @@ class FieldMapping {
   }
 }
 
-/// Exception saat mapping atau konversi field wajib gagal.
+
 class ApiAdapterException implements Exception {
   final String field;
   final String sourcePath;
@@ -208,7 +208,7 @@ class ApiAdapterException implements Exception {
       'ApiAdapterException [field="$field", source="$sourcePath"]: $message';
 }
 
-/// Jejak debugging untuk satu field hasil adaptasi.
+
 class FieldTrace {
   final String targetField;
   final String sourcePath;
@@ -271,14 +271,12 @@ class _MissingSentinel {
 
 const Object _missing = _MissingSentinel();
 
-/// Penerjemah universal antara JSON API eksternal dan format standar Model lama.
+
 class ApiAdapter {
   static final RegExp _segmentRegex = RegExp(r'^([^\[\]]+)(?:\[(\d+)\])?$');
   static final RegExp _bracketOnlyRegex = RegExp(r'^\[(\d+)\]$');
 
-  /// Mengambil nilai dari JSON menggunakan dot notation dan index array,
-  /// contoh: `"academic.major"`, `"result.items"`, `"authors[0].name"`.
-  /// Mengembalikan `null` jika path tidak ditemukan.
+ 
   static dynamic extractPath(dynamic root, String path) {
     final result = _resolvePath(root, path);
     return identical(result, _missing) ? null : result;
@@ -392,9 +390,7 @@ class ApiAdapter {
     return result;
   }
 
-  // ══════════════════════════════════════════════════════════════════════
-  // MODE OTOMATIS (ZERO-REMAP): Deteksi List & Mapping Field Secara Dinamis
-  // ══════════════════════════════════════════════════════════════════════
+ 
 
   static final RegExp _isoDateRegex = RegExp(r'^\d{4}-\d{2}-\d{2}');
   static final RegExp _tokenSplitRegex = RegExp(r'(?<=[a-z])(?=[A-Z])|[_\-\s]+');
@@ -403,8 +399,7 @@ class ApiAdapter {
     caseSensitive: false,
   );
 
-  // Kamus alias Inggris + Indonesia lintas bidang:
-  // berita, kuliner, game, alat tulis/produk, luar angkasa, buah/tanaman, film/anime, buku, musik, wisata, otomotif
+
   static const List<String> _idAliases = [
     'id', 'uid', 'uuid', 'guid', '_id',
     'article_id', 'post_id', 'item_id', 'product_id', 'game_id', 'app_id', 'appid',
@@ -594,8 +589,7 @@ class ApiAdapter {
     'jadwal', 'periode', 'masa',
   ];
 
-  /// Otomatis mencari List item utama di dalam JSON (root Array, nested Object,
-  /// maupun List-di-dalam-List yang otomatis di-flatten).
+
   static List<Map<String, dynamic>> autoExtractList(dynamic rawResponse) {
     if (rawResponse is List) {
       final maps = _extractMapsFromList(rawResponse);
@@ -636,7 +630,7 @@ class ApiAdapter {
     return bestList;
   }
 
-  /// Adaptasi List secara OTOMATIS tanpa perlu menulis mapping manual.
+
   /// Jika [overrides] diisi sebagian, hanya field itu yang pakai aturan manual, sisanya otomatis.
   static AdaptedListResult autoAdaptList(
     dynamic rawResponse, {
@@ -692,7 +686,7 @@ class ApiAdapter {
     return result;
   }
 
-  /// Adaptasi 1 objek detail secara OTOMATIS tanpa perlu menulis mapping manual.
+
   static AdaptedItem autoAdaptObject(
     dynamic rawResponse, {
     String objectPath = '',
@@ -746,8 +740,7 @@ class ApiAdapter {
     return result;
   }
 
-  /// Jika List berisi grup pembungkus (mis. `categories: [{name, items: [...]}]`),
-  /// otomatis gabungkan (flatten) semua inner items.
+ 
   static List<Map<String, dynamic>> _flattenIfWrapperGroup(
     List<Map<String, dynamic>> list,
   ) {
@@ -768,8 +761,7 @@ class ApiAdapter {
     final sampleInner = _extractMapsFromList(sample[innerListKey] as List);
     if (sampleInner.isEmpty) return list;
 
-    // Anggap wrapper jika elemen luar hanya punya sedikit field primitif (<= 2)
-    // sementara item di dalam list-nya jauh lebih kaya field-nya.
+   
     if (primitiveCount <= 2 && sampleInner.first.length > sample.length) {
       final flattened = <Map<String, dynamic>>[];
       for (final group in list) {
@@ -792,7 +784,7 @@ class ApiAdapter {
     if (raw is! Map) return null;
 
     final map = Map<String, dynamic>.from(raw);
-    // Jika dibungkus wrapper seperti {"success": true, "data": {...}}, kupas otomatis.
+    
     for (final wrapperKey in const ['data', 'result', 'item', 'post', 'article', 'payload']) {
       final inner = map[wrapperKey];
       if (inner is Map && inner.isNotEmpty) {

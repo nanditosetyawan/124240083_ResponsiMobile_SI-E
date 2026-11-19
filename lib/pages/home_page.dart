@@ -1,14 +1,3 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: HALAMAN UTAMA (Menu + Logout)                        ║
-// ║  FILE : pages/home_page.dart                                 ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : (ditandai ← EDIT di bawah)                          ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ AppBar menampilkan username ("Hai, {username}!")
-//   ✅ Terdapat tombol Logout di BAWAH pilihan yang tersedia
-//   ✅ 3 menu → masing-masing ke ListPage dengan type berbeda
 
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
@@ -17,17 +6,12 @@ import 'list_page.dart';    // ← EDIT: path ke ListPage
 import 'favorite_page.dart'; // ← EDIT: path ke FavoritePage
 
 class HomePage extends StatelessWidget {
-  // username diterima dari LoginPage setelah login berhasil
-  // Ditampilkan di AppBar: "Hai, {username}!"
-  // ← EDIT: nama parameter ini harus sama dengan yang dikirim dari LoginPage
+
   final String username;
   const HomePage({super.key, required this.username});
 
-  // ══════════════════════════════════════════════════════════════
   // FITUR: LOGOUT
-  // COPY: method _logout ini — UNIVERSAL
-  // Ketentuan: "Terdapat tombol logout di bawah pilihan yang tersedia"
-  // ══════════════════════════════════════════════════════════════
+
   Future<void> _logout(BuildContext context) async {
     await AuthService.logout(); // hapus sesi dari SharedPreferences
 
@@ -46,9 +30,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // ── FITUR: TAMPILKAN USERNAME DI APPBAR ───────────────
-        // COPY: title ini — UNIVERSAL
-        // EDIT: ganti 'username' dengan nama variabel username kamu
+        // TAMPILKAN USERNAME DI APPBAR ───────────────
+       
         title: Text('Hai, $username!'), // ← EDIT: format teks boleh diganti
         // ──────────────────────────────────────────────────────
         backgroundColor: const Color.fromARGB(255, 87, 181, 128), // ← EDIT: warna AppBar
@@ -69,14 +52,12 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // ── FITUR: DAFTAR MENU (News, Blog, Reports) ───────
-            // COPY: Expanded + ListView ini
-            // EDIT: tambah/kurang _buildMenuCard sesuai menu yang dibutuhkan
-            //       Ganti 'type' dengan identifier menu kamu
+            // DAFTAR MENU 
+          
             Expanded(
               child: ListView(
                 children: [
-                  // ── KARTU MENU 1 (terhubung ke ApiConfig.urls['news']) ──
+                  // ── KARTU MENU 1 (terhubung ke ApiConfig.urls['menuuuuuuuuu makanannnn']) ──
                   _buildMenuCard(
                     context,
                     icon: Icons.newspaper,
@@ -90,14 +71,11 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            // ──────────────────────────────────────────────────
+     
 
-            // ══════════════════════════════════════════════════
+    
             // FITUR: TOMBOL LOGOUT DI BAWAH
-            // COPY: SizedBox + ElevatedButton ini — UNIVERSAL
-            // Ketentuan: tombol logout HARUS di bawah pilihan yang ada
-            // EDIT: warna tombol, teks
-            // ══════════════════════════════════════════════════
+         
             const SizedBox(height: 8),
             SizedBox(
               width: double.infinity,
@@ -119,17 +97,13 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // HELPER: Widget kartu menu
-  // COPY: method _buildMenuCard ini — UNIVERSAL
-  // EDIT: tidak perlu edit, sudah parameterik
-  // ══════════════════════════════════════════════════════════════
+ 
   Widget _buildMenuCard(
     BuildContext context, {
     required IconData icon,
     required String title,
     required String subtitle,
-    required String type, // dikirim ke ListPage agar tahu endpoint mana yang dipanggil
+    required String type, 
   }) {
     return Card(
       elevation: 2,

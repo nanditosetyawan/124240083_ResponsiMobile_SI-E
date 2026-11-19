@@ -1,14 +1,4 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: LOGIN PAGE                                           ║
-// ║  FILE : pages/login_page.dart                                ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : (ditandai ← EDIT di bawah)                          ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ SnackBar error berwarna MERAH
-//   ✅ Login hanya untuk akun yang sudah diregister
-//   ✅ Setelah login → ke HomePage dengan membawa username
+
 
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
@@ -23,19 +13,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // ── Controller untuk TextField ───────────────────────────────
-  // COPY: kedua controller ini — UNIVERSAL
+ 
   final TextEditingController _usernameCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
-  // ─────────────────────────────────────────────────────────────
 
-  bool _isLoading = false; // untuk disable tombol saat proses login
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: LOGIKA LOGIN
-  // COPY: method _doLogin() ini — UNIVERSAL
-  // EDIT: ganti 'HomePage(username: username)' dengan halaman utama kamu
-  // ══════════════════════════════════════════════════════════════
+  bool _isLoading = false;
+
+
   Future<void> _doLogin() async {
     final String username = _usernameCtrl.text.trim();
     final String password = _passwordCtrl.text.trim();
@@ -62,16 +47,12 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: SNACKBAR ERROR MERAH
-  // COPY: method ini — UNIVERSAL, langsung tempel tanpa edit
-  // Ketentuan: "Jika error memunculkan snackbar error berwarna merah"
-  // ══════════════════════════════════════════════════════════════
+
   void _showErrorSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: Colors.red, // ← INI YANG MEMBUAT MERAH — JANGAN HAPUS
+        backgroundColor: Colors.red, 
         duration: const Duration(seconds: 3),
       ),
     );
@@ -80,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // COPY: dispose ini — WAJIB ADA agar tidak memory leak
+  
     _usernameCtrl.dispose();
     _passwordCtrl.dispose();
     super.dispose();
@@ -91,8 +72,8 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Login'), // ← EDIT: judul AppBar
-        backgroundColor: const Color.fromARGB(255, 93, 207, 112), // ← EDIT: warna AppBar
+          'Login'), 
+        backgroundColor: const Color.fromARGB(255, 93, 207, 112), 
         foregroundColor: const Color.fromARGB(255, 172, 218, 187),
         centerTitle: true,
       ),
@@ -110,8 +91,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 32),
 
-            // ── TextField Username ─────────────────────────────
-            // COPY: TextField ini — UNIVERSAL
+           
             TextField(
               controller: _usernameCtrl,
               decoration: const InputDecoration(
@@ -121,11 +101,9 @@ class _LoginPageState extends State<LoginPage> {
               textInputAction: TextInputAction.next,
             ),
             const SizedBox(height: 16),
-            // ──────────────────────────────────────────────────
+          
 
-            // ── TextField Password ─────────────────────────────
-            // COPY: TextField ini — UNIVERSAL
-            // obscureText: true → teks tersembunyi (bintang/titik)
+       
             TextField(
               controller: _passwordCtrl,
               obscureText: true, // ← JANGAN HAPUS untuk password
@@ -137,10 +115,7 @@ class _LoginPageState extends State<LoginPage> {
               onSubmitted: (_) => _doLogin(),
             ),
             const SizedBox(height: 24),
-            // ──────────────────────────────────────────────────
-
-            // ── Tombol Login dengan Loading ────────────────────
-            // COPY: ElevatedButton ini — UNIVERSAL
+       
             ElevatedButton(
               onPressed: _isLoading ? null : _doLogin, // null = disabled saat loading
               style: ElevatedButton.styleFrom(
@@ -153,14 +128,13 @@ class _LoginPageState extends State<LoginPage> {
                       height: 20, width: 20,
                       child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2),
                     )
-                  : const Text('Login'), // ← EDIT: teks tombol
+                  : const Text('Login'), 
             ),
-            // ──────────────────────────────────────────────────
+
 
             const SizedBox(height: 16),
 
-            // ── Link ke Register ───────────────────────────────
-            // COPY: TextButton ini — UNIVERSAL
+         
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -170,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
               },
               child: const Text(' ',), // ← EDIT: teks
             ),
-            // ──────────────────────────────────────────────────
+         
           ],
         ),
       ),

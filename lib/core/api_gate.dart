@@ -66,7 +66,7 @@ class JsonInspectionResult {
   String toString() => format();
 }
 
-/// Membedah struktur JSON secara otomatis tanpa mengasumsikan nama key tertentu.
+/// Membedah struktur JSON 
 class JsonInspector {
   static JsonInspectionResult inspect(dynamic json) {
     final lines = <String>[];

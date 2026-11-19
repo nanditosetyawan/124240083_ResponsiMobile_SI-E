@@ -1,14 +1,4 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: HALAMAN FAVOURITE                                    ║
-// ║  FILE : pages/favorite_page.dart                             ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : (ditandai ← EDIT di bawah)                          ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ Semua data favourite (dari news/blog/report) tampil di sini
-//   ✅ List terupdate otomatis saat kembali dari DetailPage
-//   ✅ Bisa hapus favourite langsung dari halaman ini
+
 
 import 'package:flutter/material.dart';
 import '../models/article_model.dart';      // ← EDIT: import model kamu
@@ -32,25 +22,18 @@ class _FavoritePageState extends State<FavoritePage> {
     _loadFavorites(); // muat saat halaman pertama dibuka
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: LOAD SEMUA FAVOURITE DARI SHAREDPREFERENCES
-  // COPY: method ini — UNIVERSAL
-  // EDIT: ganti 'ArticleModel' dengan nama model kamu
-  // ══════════════════════════════════════════════════════════════
+
+  // LOAD SEMUA FAVOURITE DARI SHAREDPREFERENCES
+ 
   Future<void> _loadFavorites() async {
     setState(() => _isLoading = true);
     final List<ArticleModel> favs = await FavoriteService.getFavorites(); // ← EDIT: ArticleModel
     setState(() { _favorites = favs; _isLoading = false; });
   }
 
-  // ══════════════════════════════════════════════════════════════
+
   // FITUR: HAPUS FAVOURITE DARI HALAMAN INI
-  // COPY: method ini — UNIVERSAL
-  // EDIT: ganti 'ArticleModel' dan 'article.id', 'article.title'
-  //
-  // Ketentuan: "List data favourite terupdate terlepas dilakukannya
-  // perubahan di halaman favourite maupun dari halaman detil"
-  // ══════════════════════════════════════════════════════════════
+ 
   Future<void> _removeFavorite(ArticleModel article) async { // ← EDIT: ArticleModel
     await FavoriteService.removeFavorite(article.id); // ← EDIT: .id
     _loadFavorites(); // reload list setelah hapus
@@ -100,13 +83,10 @@ class _FavoritePageState extends State<FavoritePage> {
     );
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: ITEM FAVOURITE DI LIST
-  // COPY: method ini
-  // EDIT: ganti 'ArticleModel', 'article.imageUrl', 'article.title',
-  //       'article.newsSite' dengan field di model kamu
-  // ══════════════════════════════════════════════════════════════
-  Widget _buildFavoriteTile(ArticleModel article) { // ← EDIT: ArticleModel
+
+  // ITEM FAVOURITE DI LIST
+
+  Widget _buildFavoriteTile(ArticleModel article) { 
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: ListTile(
@@ -150,12 +130,9 @@ class _FavoritePageState extends State<FavoritePage> {
           onPressed: () => _removeFavorite(article),
         ),
 
-        // ════════════════════════════════════════════════════
-        // FITUR: RELOAD FAVOURITE SETELAH KEMBALI DARI DETAIL
-        // COPY: onTap ini — UNIVERSAL, JANGAN LUPA 'await'
-        // Ketentuan: "List data favourite terupdate terlepas dilakukannya
-        // perubahan di halaman favourite maupun dari halaman detil"
-        // ════════════════════════════════════════════════════
+
+        // RELOAD FAVOURITE SETELAH KEMBALI DARI DETAIL
+      
         onTap: () async {
           await Navigator.push(                            // 'await' wajib ada!
             context,
@@ -163,8 +140,7 @@ class _FavoritePageState extends State<FavoritePage> {
               builder: (_) => DetailPage(article: article), // ← EDIT: nama class & parameter
             ),
           );
-          // Setelah kembali dari DetailPage → reload list favourite
-          // Ini yang membuat list terupdate meski perubahan dilakukan di DetailPage
+    
           _loadFavorites();
         },
         // ════════════════════════════════════════════════════

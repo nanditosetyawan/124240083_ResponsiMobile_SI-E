@@ -1,28 +1,4 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: MODEL DATA (News / Blog / Report)                    ║
-// ║  FILE : models/article_model.dart                            ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : Sesuaikan nama field dengan key JSON dari API-mu     ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// CARA CEK KEY JSON API:
-//   Buka URL API di browser, lihat key-key yang ada.
-//   Contoh Spaceflight News API v4:
-//     { "id": 1, "title": "...", "image_url": "...", "news_site": "...",
-//       "summary": "...", "published_at": "...", "url": "..." }
-//
-// WAJIB ADA di model untuk FavoriteService:
-//   - field 'id' (int)
-//   - method toMap()
-//   - factory fromMap(map)
-//
-// KETENTUAN YANG DIPENUHI (dari model ini):
-//   ✅ Judul (title)
-//   ✅ Gambar (imageUrl ← dari JSON key 'image_url')
-//   ✅ Author (newsSite ← dari JSON key 'news_site')
-//   ✅ Tanggal publish (publishedAt ← dari JSON key 'published_at')
-//   ✅ Summary (summary)
-//   ✅ URL situs resmi (url)
+
 
 import '../core/api_adapter.dart';
 
