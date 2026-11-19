@@ -1,27 +1,13 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: CEK LOGIN PERSIST DI STARTUP APP                    ║
-// ║  FILE : main.dart                                            ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : Import halaman LoginPage dan HomePage sesuai path-mu ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ Login tersimpan di SharedPreferences — saat app dibuka ulang
-//      tanpa logout, user langsung masuk ke HomePage (tidak perlu login lagi)
-//
-// ALUR:
-//   App buka → FutureBuilder cek SharedPreferences
-//     → ada username tersimpan → langsung ke HomePage
-//     → tidak ada            → ke LoginPage
+
 
 import 'package:flutter/material.dart';
 import 'services/auth_service.dart';
 import 'services/notification_service.dart';
-import 'pages/login_page.dart';  // ← EDIT: pastikan path-nya benar
-import 'pages/home_page.dart';   // ← EDIT: pastikan path-nya benar
+import 'pages/login_page.dart';  
+import 'pages/home_page.dart';  
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized(); // ← WAJIB ADA saat ada async sebelum runApp
+  WidgetsFlutterBinding.ensureInitialized(); 
   await NotificationService.init();          // inisialisasi notifikasi lokal & minta izin Android 13+
   runApp(const MyApp());
 }
@@ -41,14 +27,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
 
-      // ══════════════════════════════════════════════════════════
-      // FITUR: LOGIN PERSIST (tidak perlu login ulang jika belum logout)
-      // COPY: bagian FutureBuilder ini — UNIVERSAL
-      // EDIT:
-      //   - Ganti 'HomePage(username: loggedInUser)' dengan halaman utama kamu
-      //   - Parameter 'username' dikirim agar HomePage bisa tampilkan "Hai, {username}!"
-      //   - Ganti 'LoginPage()' dengan halaman login kamu
-      // ══════════════════════════════════════════════════════════
+    
+      // LOGIN PERSIST (tidak perlu login ulang jika belum logout)
+   
       home: FutureBuilder<String?>(
         future: AuthService.getLoggedInUser(), // baca SharedPreferences
         builder: (context, snapshot) {

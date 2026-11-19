@@ -1,14 +1,3 @@
-// ╔══════════════════════════════════════════════════════════════╗
-// ║  FITUR: REGISTER PAGE                                        ║
-// ║  FILE : pages/register_page.dart                             ║
-// ║  COPY : Seluruh file ini                                     ║
-// ║  EDIT : (ditandai ← EDIT di bawah)                          ║
-// ╚══════════════════════════════════════════════════════════════╝
-//
-// KETENTUAN YANG DIPENUHI:
-//   ✅ SnackBar error berwarna MERAH jika gagal
-//   ✅ Tidak bisa register username yang sudah ada
-//   ✅ Setelah berhasil → kembali ke LoginPage
 
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
@@ -25,11 +14,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final TextEditingController _passwordCtrl = TextEditingController();
   bool _isLoading = false;
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: LOGIKA REGISTER
-  // COPY: method _doRegister() ini — UNIVERSAL
-  // EDIT: teks pesan boleh diganti
-  // ══════════════════════════════════════════════════════════════
+  
   Future<void> _doRegister() async {
     final String username = _usernameCtrl.text.trim();
     final String password = _passwordCtrl.text.trim();
@@ -39,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
     if (password.length < 1) {
-      _showErrorSnackBar('Password minimal 1 karakter.'); // ← EDIT: boleh hapus validasi ini
+      _showErrorSnackBar('Password minimal 1 karakter.'); 
       return;
     }
 
@@ -62,10 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
     }
   }
 
-  // ══════════════════════════════════════════════════════════════
-  // FITUR: SNACKBAR ERROR MERAH
-  // COPY: method ini — UNIVERSAL, SAMA PERSIS dengan di LoginPage
-  // ══════════════════════════════════════════════════════════════
+  
   void _showErrorSnackBar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(

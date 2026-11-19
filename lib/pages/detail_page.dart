@@ -190,6 +190,13 @@ class _DetailPageState extends State<DetailPage> {
                         style: const TextStyle(color: Colors.grey, fontSize: 13)),
                   ]),
                   const SizedBox(height: 4),
+                   Row(children: [
+                    const Icon(Icons.source, size: 16, color: Colors.grey),
+                    const SizedBox(width: 4),
+                    Text(article.extra('mealType'),                // ← EDIT: .newsSite atau article.extra('nama_key')
+                        style: const TextStyle(color: Colors.grey, fontSize: 13)),
+                  ]),
+                  const SizedBox(height: 4),
                   
                   // ─────────────────────────────────────────────
                   const SizedBox(height: 8),
