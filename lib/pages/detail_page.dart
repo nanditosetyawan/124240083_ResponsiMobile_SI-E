@@ -259,7 +259,7 @@ class _DetailPageState extends State<DetailPage> {
                   const SizedBox(height: 8),
 
                   // data ingrediend  dan menu
-
+Text('Bahan - Bahan: '),
                   Text(
                     article.summary.isNotEmpty           // ← EDIT: .summary
                         ? article.extra('ingredients')                // ← EDIT: .summary
@@ -269,7 +269,7 @@ class _DetailPageState extends State<DetailPage> {
                   const SizedBox(height: 24),
                   const Divider(),
                   const SizedBox(height: 8),
-
+Text('Instruksi Memasak: '),
                   Text(
                     article.summary.isNotEmpty           // ← EDIT: .summary
                         ? article.extra('instructions')                // ← EDIT: .summary
