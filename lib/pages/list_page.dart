@@ -99,7 +99,7 @@ class _ListPageState extends State<ListPage> {
   // JANGAN ubah key di `case '...'`, cukup ubah teks setelah `return '...'` sesuai nama API barumu
   String get _pageTitle {
     switch (widget.type) {
-      case 'news': return 'News';       // ← JANGAN ubah 'news' | BOLEH EDIT teks 'News'
+      case 'news': return 'Menu';       // ← JANGAN ubah 'news' | BOLEH EDIT teks 'News'
       case 'blogs': return 'Blog';      // ← JANGAN ubah 'blogs' | BOLEH EDIT teks 'Blog'
       case 'reports': return 'Reports'; // ← JANGAN ubah 'reports' | BOLEH EDIT teks 'Reports'
       default: return widget.type;
@@ -111,7 +111,7 @@ class _ListPageState extends State<ListPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(_pageTitle),
-        backgroundColor: const Color(0xFF5C6BC0), // ← EDIT: warna
+        backgroundColor: const Color.fromARGB(255, 128, 238, 151), // ← EDIT: warna
         foregroundColor: Colors.white,
         actions: [
           // Tombol Favourite di AppBar kanan
@@ -279,7 +279,7 @@ class _ListPageState extends State<ListPage> {
             [
               article.newsSite,
               article.extra('nickname'),    // ← TAMBAH DATA: buka // lalu ganti key sesuai API
-              // article.extra('platform'), // ← TAMBAH DATA: bisa tambah baris sebanyak yang dibutuhkan
+              article.extra('rating'),
             ].where((s) => s.isNotEmpty).join('\n'),
             style: const TextStyle(color: Colors.grey, fontSize: 12),
           ),

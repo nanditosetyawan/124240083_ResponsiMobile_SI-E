@@ -51,7 +51,7 @@ class HomePage extends StatelessWidget {
         // EDIT: ganti 'username' dengan nama variabel username kamu
         title: Text('Hai, $username!'), // ← EDIT: format teks boleh diganti
         // ──────────────────────────────────────────────────────
-        backgroundColor: const Color(0xFF5C6BC0), // ← EDIT: warna AppBar
+        backgroundColor: const Color.fromARGB(255, 87, 181, 128), // ← EDIT: warna AppBar
         foregroundColor: Colors.white,
         centerTitle: true,
         actions: [
@@ -80,31 +80,13 @@ class HomePage extends StatelessWidget {
                   _buildMenuCard(
                     context,
                     icon: Icons.newspaper,
-                    title: 'News', // ← BOLEH EDIT (opsional): ubah nama menu sesuai API 1
-                    subtitle: 'Get an overview of the latest SpaceFlight news.', // ← BOLEH EDIT (opsional)
+                    title: 'Menu', // ← BOLEH EDIT (opsional): ubah nama menu sesuai API 1
+                    subtitle: 'Masakan Wuenakk....', // ← BOLEH EDIT (opsional)
                     type: 'news', // ← JANGAN DIUBAH (harus sama dengan key di ApiConfig.urls)
                   ),
                   const SizedBox(height: 12),
 
-                  // ── KARTU MENU 2 (terhubung ke ApiConfig.urls['blogs']) ──
-                  _buildMenuCard(
-                    context,
-                    icon: Icons.article,
-                    title: 'Blog', // ← BOLEH EDIT (opsional): ubah nama menu sesuai API 2
-                    subtitle: 'Detailed overview of launches and missions.', // ← BOLEH EDIT (opsional)
-                    type: 'blogs', // ← JANGAN DIUBAH (harus sama dengan key di ApiConfig.urls)
-                  ),
-                  const SizedBox(height: 12),
-
-                  // ── KARTU MENU 3 (terhubung ke ApiConfig.urls['reports']) ──
-                  // CATATAN: Jika cuma pakai 2 API, hapus atau beri komentar (//) blok di bawah ini
-                  _buildMenuCard(
-                    context,
-                    icon: Icons.bar_chart,
-                    title: 'Reports', // ← BOLEH EDIT (opsional): ubah nama menu sesuai API 3
-                    subtitle: 'Space station mission data and reports.', // ← BOLEH EDIT (opsional)
-                    type: 'reports', // ← JANGAN DIUBAH (harus sama dengan key di ApiConfig.urls)
-                  ),
+              
                 ],
               ),
             ),
@@ -157,10 +139,10 @@ class HomePage extends StatelessWidget {
         leading: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: const Color(0xFF5C6BC0).withValues(alpha: 0.15),
+            color: const Color.fromARGB(255, 92, 192, 114).withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Icon(icon, color: const Color(0xFF5C6BC0), size: 28), // ← EDIT: warna ikon
+          child: Icon(icon, color: const Color.fromARGB(255, 109, 199, 127), size: 28), // ← EDIT: warna ikon
         ),
         title: Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
         subtitle: Padding(

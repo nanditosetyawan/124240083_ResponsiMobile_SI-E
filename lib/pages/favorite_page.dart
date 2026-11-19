@@ -70,8 +70,8 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorite'), // ← EDIT: judul AppBar
-        backgroundColor: const Color(0xFF5C6BC0), // ← EDIT: warna
-        foregroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(255, 95, 183, 114), // ← EDIT: warna
+        foregroundColor: const Color.fromARGB(255, 183, 244, 209),
         centerTitle: true,
       ),
       body: _isLoading
@@ -140,7 +140,9 @@ class _FavoritePageState extends State<FavoritePage> {
         subtitle: Text(
           article.newsSite,                                // ← EDIT: .newsSite (author)
           style: const TextStyle(color: Colors.grey, fontSize: 12),
+          
         ),
+        
 
         // Ikon hati merah di kanan → klik untuk hapus dari favourite
         trailing: IconButton(
